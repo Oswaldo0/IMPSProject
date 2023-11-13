@@ -39,6 +39,23 @@ eliminarEstudiante: async(idestudiante) => {
         }catch(error){
             console.error('No se pudo actualizar el registro');
         }
+    },
+
+    insertarNuevaCarrera: async (idcarrea, usuario) =>{
+        try{
+            const result = await pool.query('INSERT INTO estudiantes(idcarrea, usuario ) VALUES (?,?)',[idcarrea,usuario]);
+            return result.affectedRows > 0;
+        }catch(error){
+            console.error('No se pudo insertar la carrea ');
+        }
+    },
+    ActualizarCarreras: async (idestudiante,idcarrea,usuario)=>{
+        try{
+            const result = await pool.query('UPDATE estudiantes SET idcarrera=?, usuario=? where idestudiante=?'[idestudiante,idcarrea,usuario]);
+            return result.affectedRows>0;
+        }catch(error){
+            console.error('No se pudo actualizar la carrera');
+        }
     }
 
 
